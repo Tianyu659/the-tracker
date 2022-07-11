@@ -1,0 +1,26 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\MiKe Duong\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js config set cache-folder C:\Users\MiKe~1\AppData\Local\Yarn\Cache\v6
+
+PATH: 
+  C:\ProgramData\Anaconda3\;C:\Users\MiKe Duong\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\MiKe Duong\AppData\Local\Programs\Python\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Calibre2\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Java\jre1.8.0_311\bin;C:\Program Files\Java\jdk-18\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\5.0\bin;C:\ProgramData\Anaconda3\Scripts;C:\Program Files\MiKTeX\miktex\bin\x64\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\Program Files\MiKTeX\miktex\bin\x64;C:\Ruby31-x64\bin;C:\Users\MiKe Duong\AppData\Local\Microsoft\WindowsApps;C:\Users\MiKe Duong\AppData\Local\Programs\Hyper\resources\bin;C:\Users\MiKe Duong\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\heroku\bin;C:\Program Files\MiKTeX\miktex\bin\x64;C:\Program Files\PostgreSQL\14\bin;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, mkdir 'C:\Users\MiKe~1'
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
