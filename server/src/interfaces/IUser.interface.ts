@@ -1,5 +1,7 @@
 interface IUser {
-    name: string;
+    username: string;
+    fname: string;
+    lname: string;
     password: string;
     email?: string;
     projects: string[];
