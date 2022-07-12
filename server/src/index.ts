@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send(req + "app is running");
+app.get("/", (_req, res) => {
+  res.send("app is running");
 });
 
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT!) || 5005;
 const MONGO_URL = `mongodb+srv://${process.env.MONGO_USERNAME!}:${process.env.MONGO_PASSWORD!}@cluster0.vm4dctv.mongodb.net/`;
 
 mongoose
