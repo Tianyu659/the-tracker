@@ -1,14 +1,16 @@
+/**
+ * Project: The Tracker
+ * Description: The default starting point for React page.
+ */
+
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 
 import { useStateContext } from './contexts/ContextProvider';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { UserOverview, ProjectOverview, ProjectTasks, ProjectMembers } from './pages';
 import './App.css';
-
-
 
 function App() {
     const { activeMenu } = useStateContext();

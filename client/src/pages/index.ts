@@ -1,3 +1,8 @@
+/**
+ * Project: The Tracker
+ * Description: This file exports all of the JSX Elements from inside the ./pages directory.
+ */
+
 // User
 export { default as UserOverview } from './user/UserOverview';
 

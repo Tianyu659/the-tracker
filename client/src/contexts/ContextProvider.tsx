@@ -1,3 +1,8 @@
+/**
+ * Project: The Tracker
+ * Description: This file contains the current context of the app using COntext API.
+ */
+
 import React, { createContext, Dispatch, useContext, useState } from 'react'
 
 interface PropsInterface {
