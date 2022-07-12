@@ -2,17 +2,23 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
-import { useStateContext } from '../../contexts/ContextProvider';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import items from './items';
 import Item from './Item';
+import { setActiveMenu } from '../../feature/theme/themeSlice';
 
+/**
+ * This component is responsible for the sidebar menu
+ */
 const Sidebar: React.FC = () => {
-    const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+    // Get the states and hooks from the Redux store
+    const { activeMenu, screenSize } = useAppSelector(state => state.theme);
+    const dispatch = useAppDispatch();
 
+    // Closes side bar
     const handleCloseSidebar = () => {
         if (activeMenu && screenSize <= 900) {
-            console.log('yo');
-            setActiveMenu(false);
+            dispatch(setActiveMenu(false));
         }
     }
 

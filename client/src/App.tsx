@@ -3,17 +3,19 @@
  * Description: The default starting point for React page.
  */
 
-import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { useStateContext } from './contexts/ContextProvider';
+import { useAppSelector } from './app/hooks';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { UserOverview, ProjectOverview, ProjectTasks, ProjectMembers } from './pages';
 import './App.css';
 
+/**
+ * This component is responsible for the routing of the applicatoin.
+ */
 function App() {
-    const { activeMenu } = useStateContext();
+    const { activeMenu } = useAppSelector((state) => state.theme);
 
     return (
         <div className="">

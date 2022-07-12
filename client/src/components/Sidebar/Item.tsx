@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { useStateContext } from '../../contexts/ContextProvider';
+import { useAppSelector } from '../../app/hooks';
 
+/**
+ * The interface for the props
+ */
 interface PropsInterface {
     item: {
         title: string;
@@ -14,10 +17,13 @@ interface PropsInterface {
     handleCloseSidebar: () => void,
 }
 
+/**
+ * This component is responsible for each of the link/items on the side bar
+ */
 const Item: React.FC<PropsInterface> = ({ item, handleCloseSidebar }): JSX.Element => {
-    const { currentColor } = useStateContext();
+    const { themeColor } = useAppSelector(state => state.theme);
 
-    console.log(currentColor);
+    // If it is currently open, the active, normal otherwise
     const activeLink = 'flex items-center gap-5 pl-4 pd-3 pb-2.5 pt-2.5 rounded-lg text-white text-md m-2'
     const normalLink = 'flex items-center gap-5 pl-4 pd-3 pb-2.5 pt-2.5 rounded-lg text-white text-md text-gray-700 dark:hover:text-black hover:bg-light-gray m-2' //dark:text-gray-200
 
@@ -31,7 +37,7 @@ const Item: React.FC<PropsInterface> = ({ item, handleCloseSidebar }): JSX.Eleme
                 to={`/${item.title}/${link.name}`}
                 key={link.name}
                 onClick={handleCloseSidebar}
-                style={({ isActive }) => ({ backgroundColor : isActive ? currentColor : ''})}
+                style={({ isActive }) => ({ backgroundColor : isActive ? themeColor : ''})}
                 className={({ isActive }) => isActive ? activeLink : normalLink}
             >
                 {link.icon}
