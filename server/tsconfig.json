@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-      "target": "es2017",
+      "target": "es6",
       "module": "commonjs",
       "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+      "strict": true,
       "skipLibCheck": true,
       "sourceMap": true,
       "outDir": "./dist",
@@ -11,6 +12,7 @@
       "noImplicitAny": true,
       "strictNullChecks": false,
       "strictFunctionTypes": true,
+      "forceConsistentCasingInFileNames": true,
       "noImplicitThis": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
@@ -28,7 +30,7 @@
       "./node_modules/@types"
   ],
   "exclude": ["node_modules"],
-  "include": ["./src//*.ts", "./src//*.ts"]
+  "include": ["./src/**/*.ts", "./src//*.ts"]
 }
 
 // {

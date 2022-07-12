@@ -2,9 +2,10 @@
   "name": "tracker",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "watch": "tsc -w",
+    "build": "tsc -p .",
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js",
     "dev2": "nodemon --exec ts-node src/index.ts",
@@ -16,5 +17,14 @@
     "nodemon": "^2.0.19",
     "ts-node": "^10.8.2",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
   }
 }
