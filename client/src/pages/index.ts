@@ -3,6 +3,9 @@
  * Description: This file exports all of the JSX Elements from inside the ./pages directory.
  */
 
+// Auth
+export { default as Auth } from './auth/Auth';
+
 // User
 export { default as UserOverview } from './user/UserOverview';
 

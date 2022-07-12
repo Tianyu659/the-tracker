@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAppSelector } from './app/hooks';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
-import { UserOverview, ProjectOverview, ProjectTasks, ProjectMembers } from './pages';
+import { Auth, UserOverview, ProjectOverview, ProjectTasks, ProjectMembers } from './pages';
 import './App.css';
 
 /**
@@ -22,7 +22,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     {/* User */}
-                    <Route path="/" element={<UserOverview />} />
+                    <Route path="/" element={<Auth />} />
                     <Route path="/user/user" element={<UserOverview />} />
 
                     {/* Project */ }
