@@ -1,8 +1,12 @@
+import MenuWrapper from '../../components/MenuWrapper';
+
 const ProjectMembers: React.FC = () => {
     return (
-        <div>
-            Project Members
-        </div>
+        <MenuWrapper>
+            <div>
+                Project Members
+            </div>
+        </MenuWrapper>
     )
 }
 

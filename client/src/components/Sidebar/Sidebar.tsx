@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
                 <div className="flex justify-between items-center">
                     <Link to="/" onClick={handleCloseSidebar} className="items-center gap-3 ml-3 mt-4 flex text-2xl font-bold tracking-tight text-slate-900">
                         {/* for dark mode: dark:text-white */}
-                        <AdminPanelSettingsIcon /> <span>Tracker</span>
+                        <AdminPanelSettingsIcon /> <span>The Tracker</span>
                     </Link>
                 </div>
                 <div className="mt-10">

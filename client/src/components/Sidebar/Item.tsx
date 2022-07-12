@@ -34,7 +34,7 @@ const Item: React.FC<PropsInterface> = ({ item, handleCloseSidebar }): JSX.Eleme
             </p>
             {item.links.map((link) => (
             <NavLink 
-                to={`/${item.title}/${link.name}`}
+                to={`/${item.title.toLowerCase()}/${link.name}`}
                 key={link.name}
                 onClick={handleCloseSidebar}
                 style={({ isActive }) => ({ backgroundColor : isActive ? themeColor : ''})}
