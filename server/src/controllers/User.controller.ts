@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import User from "../models/User.model";
+import { hashPassword, checkPassword } from "../services/bcrypt.service";
 
 /**
  * user signup
@@ -65,8 +66,8 @@ export const signup = async (req: Request, res: Response) => {
     // future feature: add email verification
 
     // TODO: token
-    // TODO: hash password
-    const hashedPassword = password;
+
+    const hashedPassword = await hashPassword(password);
 
     const userResult = await User.create({
       username: username!,
@@ -76,7 +77,7 @@ export const signup = async (req: Request, res: Response) => {
       email: email ? email : null,
     });
 
-    return res.status(200).json({ userResult });
+    return res.status(200).json({ success: true, userResult });
   } catch (err) {
     console.log(err);
     return res.status(500).json({
@@ -89,8 +90,8 @@ export const signup = async (req: Request, res: Response) => {
 /**
  * signin with username/email and password
  * checkes if username/email exists and password is correct
- * @param {*} req
- * @param {*} res
+ * @param req
+ * @param res
  * @returns
  */
 export const login = async (req: Request, res: Response) => {
@@ -109,11 +110,11 @@ export const login = async (req: Request, res: Response) => {
 
     // TODO: auth with hashed password
 
-    if (existingUser.password !== password)
+    if (!await checkPassword(password, existingUser.password))
       return res.status(400).json({ message: "Password is incorrect" });
 
     // Response 200 if it is correct
-    return res.status(200).json({ result: existingUser });
+    return res.status(200).json({ success: true, result: existingUser });
   } catch (err) {
     console.log(err);
     return res.status(500).json({
