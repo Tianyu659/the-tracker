@@ -1,0 +1,16 @@
+### sanity check
+
+GET http://localhost:5005/users/
+
+### register user
+
+POST http://localhost:5005/api/user/signup
+Content-Type: application/json
+
+{
+    "username": "testUN",
+    "fname": "jane",
+    "lname": "doe",
+    "password": "test",
+    "confirmPassword": "test"
+}

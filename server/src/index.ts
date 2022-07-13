@@ -3,12 +3,16 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 
+import userRoutes from "./routes/User.route";
+
 dotenv.config();
 
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+
+app.use('/user', userRoutes);
 
 app.get("/", (_req, res) => {
   res.send("app is running");
