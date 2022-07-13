@@ -69,13 +69,16 @@ export const signup = async (req: Request, res: Response) => {
 
     const hashedPassword = await hashPassword(password);
 
-    const userResult = await User.create({
-      username: username!,
-      fname: fname!,
-      lname: lname!,
-      password: hashedPassword!,
-      email: email ? email : null,
-    });
+    const userResult = await User.create(
+      {
+        username: username!,
+        fname: fname!,
+        lname: lname!,
+        password: hashedPassword!,
+        email: email ? email : null,
+      },
+      { password: 0 }
+    );
 
     return res.status(200).json({ success: true, userResult });
   } catch (err) {
@@ -110,11 +113,13 @@ export const login = async (req: Request, res: Response) => {
 
     // TODO: auth with hashed password
 
-    if (!await checkPassword(password, existingUser.password))
+    if (!(await checkPassword(password, existingUser.password)))
       return res.status(400).json({ message: "Password is incorrect" });
 
+    // omit the password field
+    const { password: _pwd, ...userResult } = existingUser.toObject();
     // Response 200 if it is correct
-    return res.status(200).json({ success: true, result: existingUser });
+    return res.status(200).json({ success: true, result: userResult });
   } catch (err) {
     console.log(err);
     return res.status(500).json({

@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
     "usernameOrEmail": "testUN1",
-    "password": "wrongpwd@"
+    "password": "test12312T3@"
 }
 
 # {
