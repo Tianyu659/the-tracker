@@ -7,9 +7,6 @@ import userRoutes from "./routes/User.route";
 
 dotenv.config();
 
-// TODO: should the default env be production?
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
-
 const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded());

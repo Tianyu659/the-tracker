@@ -1,6 +1,5 @@
 ### DEV USE ONLY (configed in index.ts, ensured in User.route.ts)
-### currently dev user only is broken tho will need fix
-### .env: NODE_ENV=development, or left undefined (currently default value is development)
+### .env: NODE_ENV=development will allow use of those two apis
 ### sanity check
 
 GET http://localhost:5005/user/
