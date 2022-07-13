@@ -8,9 +8,25 @@ POST http://localhost:5005/user/signup
 Content-Type: application/json
 
 {
-    "username": "testUN",
+    "username": "testUN1",
     "fname": "jane",
     "lname": "doe",
-    "password": "test",
-    "confirmPassword": "test"
+    "password": "test12312T3@",
+    "confirmPassword": "test12312T3@",
+    "email": "something@gmail.com"
 }
+
+### login user
+
+POST http://localhost:5005/user/login
+Content-Type: application/json
+
+{
+    "usernameOrEmail": "testUN1",
+    "password": "wrongpwd@"
+}
+
+# {
+#     "usernameOrEmail": "testUN1" || "something@gmail.com",
+#     "password": "test12312T3@"
+# }
