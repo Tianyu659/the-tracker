@@ -105,10 +105,26 @@ export const signup = async (req: Request, res: Response) => {
     }
 }
 
-// TODO: update user info 
+/**
+ * returns all users. for development purposes only
+ * @param _req 
+ * @param res 
+ * @returns 
+ */
+export const getAllUsers = async (_req : Request, res : Response) => {
+    try {
+        const users = await User.find({});
+        return res.status(200).json({ users });
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({ errorAt:"User.controller.getAllUsers", message: 'Something went wrong. Please try again later.' });
+    }
+}
 
 // TODO: search by id
 
 // TODO: search by name/username
 
 // TODO: search by email
+
+// TODO: update user info 
