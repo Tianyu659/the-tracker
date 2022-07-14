@@ -4,12 +4,12 @@ import User from "../models/User.model";
 import { hashPassword, checkPassword } from "../services/bcrypt.service";
 
 /**
- * user signup
+ * (POST) user signup
  * with checks for existing username and email, password complexity and comfirm pwd
  * returns new user if successful
  * @param req
  * @param res
- * @returns
+ * @returns new user if successful
  */
 export const signup = async (req: Request, res: Response) => {
   const { fname, lname, username, password, confirmPassword, email } = req.body;
@@ -28,6 +28,12 @@ export const signup = async (req: Request, res: Response) => {
 
     // If password is empty, throw error
     if (password.length === 0) errors.push("Password must not be empty");
+    // If password is less than 8 characters, throw error
+    else if (password.length < 8)
+      errors.push("Password must be at least 8 characters");
+    // If password is > 20 characters, throw error
+    else if (password.length > 20)
+      errors.push("Password must be less than 20 characters");
     // If password is not complex enough, throw error
     else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
@@ -95,7 +101,7 @@ export const signup = async (req: Request, res: Response) => {
  * checkes if username/email exists and password is correct
  * @param req
  * @param res
- * @returns
+ * @returns success status and user if successful
  */
 export const login = async (req: Request, res: Response) => {
   const { usernameOrEmail, password } = req.body;
@@ -133,7 +139,7 @@ export const login = async (req: Request, res: Response) => {
  * returns all users. for development purposes only
  * @param _req
  * @param res
- * @returns
+ * @returns all users
  */
 export const getAllUsers = async (_req: Request, res: Response) => {
   try {
@@ -148,10 +154,90 @@ export const getAllUsers = async (_req: Request, res: Response) => {
   }
 };
 
-// TODO: search by id
+/**
+ * returns a user by id
+ * @param req
+ * @param res
+ * @returns user
+ */
+export const getUserById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+        const user = await User.findById(id, { password: 0 });
+        if (!user) return res.status(404).json({ message: "User not found" });
+        return res.status(200).json({ user });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            errorAt: "User.controller.getUserById",
+            message: "Something went wrong. Please try again later.",
+        });
+    }
+}
 
 // TODO: search by name/username
 
 // TODO: search by email
 
-// TODO: update user info
+/**
+ * updates a user by id (password not included)
+ * fields changable: username, fname, lname, email
+ * @param req
+ * @param res
+ * @returns success status and user if successful
+ */
+export const updateUser = async (req: Request, res: Response) => {
+    const { id, username, fname, lname, email } = req.body;
+    try {
+
+        var errors = [];
+
+        // If username > 10 characters, throw error
+        if (username.length > 10)
+          errors.push("Username must be less than 10 characters");
+        // If username contains special characters, throw error
+        else if (/[^a-zA-Z0-9]/.test(username))
+          errors.push("Username must contain only letters and numbers");
+        // If username is empty, throw error
+        else if (username.length === 0) errors.push("Username must not be empty");
+        
+        // If email is in the wrong format, throw error
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+          errors.push("Email is in the wrong format");
+    
+        // If fname or lname is empty, throw error
+        if (fname.length === 0 || lname.length === 0)
+          errors.push("Please enter your full name");
+    
+        // If username exists, then stop the signup process and return an error
+        const existingUser = await User.findOne({ username });
+        if (existingUser) errors.push("Username already exists");
+    
+        // If email exists, then stop the signup process and return an error
+        if (email) {
+          const existingEmail = await User.findOne({ email });
+          if (existingEmail) errors.push("Email already exists");
+        }
+    
+        if (errors.length > 0) {
+          return res.status(400).json({ errors: errors });
+        }    
+
+        const user = await User.findByIdAndUpdate(id, {
+            username: username ? username : null,
+            fname: fname ? fname : null,
+            lname: lname ? lname : null,
+            email: email ? email : null,
+        }, { new: true, password: 0 });
+        if (!user) return res.status(404).json({ message: "User not found" });
+        return res.status(200).json({ user });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            errorAt: "User.controller.updateUser",
+            message: "Something went wrong. Please try again later.",
+        });
+    }
+}
+
+// TODO: add project to user

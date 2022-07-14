@@ -38,3 +38,21 @@ Content-Type: application/json
 #     "usernameOrEmail": "testUN1" || "something@gmail.com",
 #     "password": "test12312T3@"
 # }
+
+### get user by id
+
+GET http://localhost:5005/user/:id
+
+### update user by id
+
+    PUT http://localhost:5005/user/:id
+    Content-Type: application/json
+    
+    {
+        "username": "testUN1",
+        "fname": "jane",
+        "lname": "doe",
+        "password": "test12312T3@",
+        "confirmPassword": "test12312T3@",
+        "email": ""
+    }
