@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import { getAllUsers, signup, login, getUserById, updateUser } from "../controllers/User.controller";
+import { getAllUsers, signup, login, getUserById, updateUserInfo } from "../controllers/User.controller";
 
 dotenv.config();
 
@@ -9,8 +9,8 @@ const userRoutes = express.Router();
 
 userRoutes.post("/signup", signup);
 userRoutes.post("/login", login);
-userRoutes.get("/:id", getUserById);
-userRoutes.put("/update", updateUser);
+userRoutes.get("/uid/:id", getUserById);
+userRoutes.put("/updateInfo", updateUserInfo);
 
 // sanity check and get all users for development purposes
 if (process.env.NODE_ENV === "development") {

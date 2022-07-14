@@ -186,8 +186,9 @@ export const getUserById = async (req: Request, res: Response) => {
  * @param res
  * @returns success status and user if successful
  */
-export const updateUser = async (req: Request, res: Response) => {
+export const updateUserInfo = async (req: Request, res: Response) => {
     const { id, username, fname, lname, email } = req.body;
+    if(!id) return res.status(400).json({ message: "Missing user id" });
     try {
 
         var errors = [];
@@ -200,7 +201,7 @@ export const updateUser = async (req: Request, res: Response) => {
           errors.push("Username must contain only letters and numbers");
         // If username is empty, throw error
         else if (username.length === 0) errors.push("Username must not be empty");
-        
+
         // If email is in the wrong format, throw error
         if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
           errors.push("Email is in the wrong format");
@@ -211,12 +212,12 @@ export const updateUser = async (req: Request, res: Response) => {
     
         // If username exists, then stop the signup process and return an error
         const existingUser = await User.findOne({ username });
-        if (existingUser) errors.push("Username already exists");
+        if (existingUser && existingUser._id != id ) errors.push("Username already exists");
     
         // If email exists, then stop the signup process and return an error
         if (email) {
           const existingEmail = await User.findOne({ email });
-          if (existingEmail) errors.push("Email already exists");
+          if (existingEmail && existingEmail.email != email ) errors.push("Email already exists");
         }
     
         if (errors.length > 0) {
@@ -228,7 +229,7 @@ export const updateUser = async (req: Request, res: Response) => {
             fname: fname ? fname : null,
             lname: lname ? lname : null,
             email: email ? email : null,
-        }, { new: true, password: 0 });
+        }, { new: true, fields : { password: 0 } });
         if (!user) return res.status(404).json({ message: "User not found" });
         return res.status(200).json({ user });
     } catch (err) {
@@ -239,5 +240,7 @@ export const updateUser = async (req: Request, res: Response) => {
         });
     }
 }
+
+// TODO: update user password
 
 // TODO: add project to user
