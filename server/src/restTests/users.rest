@@ -1,0 +1,40 @@
+### DEV USE ONLY (configed in index.ts, ensured in User.route.ts)
+### .env: NODE_ENV=development will allow use of those two apis
+### sanity check
+
+GET http://localhost:5005/user/
+
+### get all users, for dev use only
+
+GET http://localhost:5005/user/all
+
+### ---------------------------------------------------
+
+### register user
+
+POST http://localhost:5005/user/signup
+Content-Type: application/json
+
+{
+    "username": "testUN1",
+    "fname": "jane",
+    "lname": "doe",
+    "password": "test12312T3@",
+    "confirmPassword": "test12312T3@",
+    "email": "something@gmail.com"
+}
+
+### login user
+
+POST http://localhost:5005/user/login
+Content-Type: application/json
+
+{
+    "usernameOrEmail": "testUN1",
+    "password": "test12312T3@"
+}
+
+# {
+#     "usernameOrEmail": "testUN1" || "something@gmail.com",
+#     "password": "test12312T3@"
+# }
